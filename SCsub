@@ -3,8 +3,7 @@ Import('env')
 
 sources = [
     "register_types.cpp",
-    "crappybird.cpp",
-    "crappy_movement.cpp"
+    "src/crappy_movement_component.cpp"
 ]
 
 module_env = env.Clone()

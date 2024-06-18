@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://betcydwcbfwam"]
+
+[ext_resource type="PackedScene" uid="uid://dsxhjsi60h7ga" path="res://assets/crappy_bird.blend" id="1_wp2eb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u6k4"]
+shading_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glnmt"]
+shading_mode = 0
+albedo_color = Color(0.5, 0.412917, 0.025, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqsa3"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54x2y"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0faoo"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhcf0"]
+radius = 0.146197
+height = 0.316291
+
+[node name="crappy_bird" instance=ExtResource("1_wp2eb")]
+
+[node name="body" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4u6k4")
+surface_material_override/1 = SubResource("StandardMaterial3D_glnmt")
+surface_material_override/2 = SubResource("StandardMaterial3D_pqsa3")
+
+[node name="peck" parent="body" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_54x2y")
+surface_material_override/1 = SubResource("StandardMaterial3D_0faoo")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0212043, 0.147803, 0)
+shape = SubResource("CapsuleShape3D_qhcf0")
+
+[node name="CrappyMovementComponent" type="CrappyMovementComponent" parent="." index="2"]
+character_body_path = NodePath("../CharacterBody3D")
