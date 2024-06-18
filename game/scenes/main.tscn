@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://drxyp8gv5gse6"]
+[gd_scene load_steps=2 format=3 uid="uid://drxyp8gv5gse6"]
+
+[ext_resource type="PackedScene" uid="uid://betcydwcbfwam" path="res://scenes/bird.tscn" id="1_o1jde"]
 
 [node name="Main" type="Node3D"]
+
+[node name="crappy_bird" parent="." instance=ExtResource("1_o1jde")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0159835, -0.0433339, 0.0244156)

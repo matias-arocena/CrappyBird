@@ -8,13 +8,11 @@ class CrappyMovementComponent : public Node3D {
     GDCLASS(CrappyMovementComponent, Node3D);
 
     CharacterBody3D *character_body = nullptr;
-
-    NodePath character_body_path;
 protected:
     static void _bind_methods();
 
 public:
-    void set_character_body_path(const NodePath &p_character_body_path);
-    NodePath get_character_body_path() const;
+    void set_character_body(CharacterBody3D *p_character_body);
+    CharacterBody3D* get_character_body() const;
 };
 

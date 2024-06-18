@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://betcydwcbfwam"]
+[gd_scene load_steps=9 format=3 uid="uid://betcydwcbfwam"]
 
 [ext_resource type="PackedScene" uid="uid://dsxhjsi60h7ga" path="res://assets/crappy_bird.blend" id="1_wp2eb"]
+[ext_resource type="Script" path="res://scripts/crappy_movement_component.gd" id="2_dng0s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u6k4"]
 shading_mode = 0
@@ -42,5 +43,6 @@ surface_material_override/1 = SubResource("StandardMaterial3D_0faoo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0212043, 0.147803, 0)
 shape = SubResource("CapsuleShape3D_qhcf0")
 
-[node name="CrappyMovementComponent" type="CrappyMovementComponent" parent="." index="2"]
-character_body_path = NodePath("../CharacterBody3D")
+[node name="CrappyMovementComponent" type="CrappyMovementComponent" parent="." index="2" node_paths=PackedStringArray("character_body")]
+script = ExtResource("2_dng0s")
+character_body = NodePath("../CharacterBody3D")
