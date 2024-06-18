@@ -15,6 +15,7 @@ public:
 	void add(int p_value);
 	void reset();
 	int get_total() const;
+    int get_zero() const;
 
 	CrappyBird();
 };
