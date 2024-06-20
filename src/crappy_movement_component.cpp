@@ -14,4 +14,3 @@ void CrappyMovementComponent::_bind_methods() {
     ClassDB::bind_method(D_METHOD("set_character_body", "character_body"), &CrappyMovementComponent::set_character_body);
     ClassDB::bind_method(D_METHOD("get_character_body"), &CrappyMovementComponent::get_character_body);
 }
-
