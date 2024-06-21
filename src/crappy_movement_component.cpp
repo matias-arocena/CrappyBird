@@ -41,6 +41,8 @@ void CrappyMovementComponent::_bind_methods() {
 
     ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "gravity"), "set_gravity", "get_gravity");
     ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "jump_force"), "set_jump_force", "get_jump_force");    
+
+    ADD_SIGNAL(MethodInfo("jumped"));
 }
 
 void CrappyMovementComponent::jump() {
@@ -51,6 +53,8 @@ void CrappyMovementComponent::jump() {
     Vector3 velocity = character_body->get_velocity();
     velocity.y = jump_force;
     character_body->set_velocity(velocity);
+    
+    emit_signal("jumped");
 }
 
 void CrappyMovementComponent::physics_process(float delta) {

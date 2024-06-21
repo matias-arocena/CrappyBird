@@ -5,7 +5,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	$"%CrappyMovementComponent".physics_process(delta)
-	
+
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("ui_up")):
 		$"%CrappyMovementComponent".jump()
+
+
+func _on_crappy_movement_component_jumped() -> void:
+	$"%AnimationPlayer".stop()
+	$"%AnimationPlayer".play("fly")

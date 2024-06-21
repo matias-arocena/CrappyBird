@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvqx8f7q44tf4"]
+[gd_scene load_steps=7 format=3 uid="uid://dvqx8f7q44tf4"]
 
 [ext_resource type="Script" path="res://scripts/bird.gd" id="2_ercsv"]
 [ext_resource type="PackedScene" uid="uid://deprkh1830jh2" path="res://assets/crappy_bird.tscn" id="2_oqkca"]
@@ -7,12 +7,48 @@
 radius = 0.12273
 height = 0.297377
 
+[sub_resource type="Animation" id="Animation_k7r7i"]
+resource_name = "fly"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.13566e-08, -3.14159, -0.366851), Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kf1fp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.13566e-08, -3.14159, -0.366851)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwuml"]
+_data = {
+"RESET": SubResource("Animation_kf1fp"),
+"fly": SubResource("Animation_k7r7i")
+}
+
 [node name="Bird" type="CharacterBody3D"]
 platform_on_leave = 2
 script = ExtResource("2_ercsv")
 
 [node name="Pivot" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-0.933462, -0.358678, -1.50996e-07, -0.358678, 0.933462, -3.13566e-08, 1.52196e-07, 2.48886e-08, -1, 0, 0, 0)
 
 [node name="crappy_bird" parent="Pivot" instance=ExtResource("2_oqkca")]
 
@@ -25,3 +61,11 @@ unique_name_in_owner = true
 process_mode = 1
 gravity = 1.0
 jump_force = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_xwuml")
+}
+
+[connection signal="jumped" from="CrappyMovementComponent" to="." method="_on_crappy_movement_component_jumped"]
