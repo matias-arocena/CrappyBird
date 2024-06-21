@@ -1,49 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://betcydwcbfwam"]
+[gd_scene load_steps=4 format=3 uid="uid://dvqx8f7q44tf4"]
 
-[ext_resource type="PackedScene" uid="uid://dsxhjsi60h7ga" path="res://assets/crappy_bird.blend" id="1_wp2eb"]
-[ext_resource type="Script" path="res://scenes/bird.gd" id="2_ercsv"]
+[ext_resource type="Script" path="res://scripts/bird.gd" id="2_ercsv"]
+[ext_resource type="PackedScene" uid="uid://deprkh1830jh2" path="res://assets/crappy_bird.tscn" id="2_oqkca"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u6k4"]
-shading_mode = 0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hhwsy"]
+radius = 0.12273
+height = 0.297377
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glnmt"]
-shading_mode = 0
-albedo_color = Color(0.5, 0.412917, 0.025, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqsa3"]
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54x2y"]
-shading_mode = 0
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0faoo"]
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhcf0"]
-radius = 0.146197
-height = 0.316291
-
-[node name="crappy_bird" instance=ExtResource("1_wp2eb")]
+[node name="Bird" type="CharacterBody3D"]
+platform_on_leave = 2
 script = ExtResource("2_ercsv")
 
-[node name="body" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_4u6k4")
-surface_material_override/1 = SubResource("StandardMaterial3D_glnmt")
-surface_material_override/2 = SubResource("StandardMaterial3D_pqsa3")
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="peck" parent="body" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_54x2y")
-surface_material_override/1 = SubResource("StandardMaterial3D_0faoo")
+[node name="crappy_bird" parent="Pivot" instance=ExtResource("2_oqkca")]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00891516, 0.142226, 0)
+shape = SubResource("CapsuleShape3D_hhwsy")
+
+[node name="CrappyMovementComponent" type="CrappyMovementComponent" parent="."]
 unique_name_in_owner = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0212043, 0.147803, 0)
-shape = SubResource("CapsuleShape3D_qhcf0")
-
-[node name="CrappyMovementComponent" type="CrappyMovementComponent" parent="." index="2"]
-unique_name_in_owner = true
+process_mode = 1
+gravity = 1.0
+jump_force = 1.0
