@@ -3,7 +3,7 @@
 
 int main()
 {
-    TiKiRa::Engine::GetInstance().SetTick([]() {
+    TiKiRa::Engine::GetInstance().SetRenderFunction([]() {
         TiKiRa::HUD::GetInstance().DrawText("Hello, World!", 10, 10, 20, {50, 50, 50, 255});
     });
     TiKiRa::Engine::GetInstance().Run("Crappy Bird");
